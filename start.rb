@@ -23,7 +23,7 @@ class Length
 
   def in(val)
     case @type
-      when :meter
+      when :meters
         if val == :miles
           @num * 0.000621371192
         elsif val == :inches
@@ -44,7 +44,6 @@ class Length
           error(@type, val)
         end
     end
-
   end
 
   def error(type, value)
