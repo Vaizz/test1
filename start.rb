@@ -2,7 +2,7 @@
 public
 
   def meters
-    Length.new(self, :meter)
+    Length.new(self, :meters)
   end
 
   def miles
@@ -31,7 +31,7 @@ class Length
         elsif val == :centimeters
           @num * 39.3700787
         else
-          puts 'TypeMismatch'
+          error(@type, val)
         end
       when :miles
         if val == :meters
@@ -41,10 +41,14 @@ class Length
         elsif val == :centimeters
           @num * 185200
         else
-          puts 'TypeMismatch'
+          error(@type, val)
         end
     end
 
+  end
+
+  def error(type, value)
+    raise TypeMismatch, "impossible to convert #{type} per #{value}"
   end
 
 end
@@ -61,9 +65,12 @@ class Weight < Length
         elsif val == :ounces
           @num * 16.000002116438
         else
-          puts 'TypeMismatch'
+          error(@type, val)
         end
     end
   end
 
+end
+
+class TypeMismatch < Exception
 end
